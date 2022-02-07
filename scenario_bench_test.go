@@ -307,6 +307,15 @@ func BenchmarkWithoutFieldsWithFormatting(b *testing.B) {
 			}
 		})
 	})
+	b.Run("asynchronous logging.Formatting", func(b *testing.B) {
+		logger := newLogging("5")
+		b.ResetTimer()
+		b.RunParallel(func(pb *testing.PB) {
+			for pb.Next() {
+				logger.Info().LogAf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
+			}
+		})
+	})
 	b.Run("stdlib.Printf", func(b *testing.B) {
 		logger := log.New(ioutil.Discard, "", log.LstdFlags)
 		b.ResetTimer()
@@ -411,6 +420,15 @@ func BenchmarkAccumulatedContextWithFormatting(b *testing.B) {
 		b.RunParallel(func(pb *testing.PB) {
 			for pb.Next() {
 				logger.Info().Logf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
+			}
+		})
+	})
+	b.Run("asynchronous logging", func(b *testing.B) {
+		logger := fakeLoggingContext(newLogging("7"))
+		b.ResetTimer()
+		b.RunParallel(func(pb *testing.PB) {
+			for pb.Next() {
+				logger.Info().LogAf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
 			}
 		})
 	})

@@ -2,7 +2,7 @@ module github.com/forgoes/benchmark-logging
 
 go 1.16
 
-require github.com/forgoes/logging v1.0.0
+require github.com/forgoes/logging v1.0.1
 
 require (
 	github.com/apex/log v1.9.0
