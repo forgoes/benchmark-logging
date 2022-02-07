@@ -312,7 +312,7 @@ func BenchmarkWithoutFieldsWithFormatting(b *testing.B) {
 		b.ResetTimer()
 		b.RunParallel(func(pb *testing.PB) {
 			for pb.Next() {
-				logger.Info().LogAf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
+				logger.Info().ALogf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
 			}
 		})
 	})
@@ -428,7 +428,7 @@ func BenchmarkAccumulatedContextWithFormatting(b *testing.B) {
 		b.ResetTimer()
 		b.RunParallel(func(pb *testing.PB) {
 			for pb.Next() {
-				logger.Info().LogAf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
+				logger.Info().ALogf("%v %v %v %s %v %v %v %v %v %s\n", fakeFmtArgs()...)
 			}
 		})
 	})
